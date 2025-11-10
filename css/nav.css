@@ -1,0 +1,203 @@
+
+/* NAVBAR CONTAINER */
+.navbar-container {
+  background: rgba(0, 0, 0, 1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.4s ease;
+  overflow: visible; /* allow dropdowns to escape navbar */
+}
+
+/* NAVBAR STYLE */
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 50px;
+  color: #fff;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-left: 25px;
+}
+
+.logo a {
+  color: #fff ;
+  text-decoration: none;
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.logo a:hover,
+.logo a:visited,
+.logo a:active {
+  color: #fff 
+}
+
+/* NAV LINKS */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 35px;
+  margin-right: 40px;
+  position: relative;
+}
+
+/* MENU ICON (will show on mobile) */
+.menu-icon {
+  display: none;
+  font-size: 1.8rem;
+  color: white;
+  cursor: pointer;
+}
+
+/* GLASS + SHIMMER LIFT HOVER EFFECT */
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  position: relative;
+  padding: 10px 18px;
+  border-radius: 12px;
+  overflow: hidden;
+  z-index: 1;
+  display: inline-block;
+  transition: transform 0.4s ease, color 0.3s ease;
+}
+
+/* Glass layer */
+.nav-links a::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  transform: translateY(10px) scale(0.95);
+  transition: all 0.4s ease;
+  z-index: -1;
+}
+
+/* Shimmer reflection */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
+  transform: skewX(-20deg);
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+/* Hover animation (glass + shimmer lift) */
+.nav-links a:hover::before {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  box-shadow: 0 8px 20px rgba(255,255,255,0.08);
+}
+
+.nav-links a:hover::after {
+  opacity: 1;
+  left: 130%;
+}
+
+.nav-links a:hover {
+  transform: translateY(-8px) scale(1.07);
+}
+
+/* DROPDOWN (desktop) */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: rgba(20, 20, 20, 0.95);
+  border-radius: 10px;
+  padding: 10px 0;
+  list-style: none;
+  min-width: 200px;
+  display: none;
+  flex-direction: column;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  margin-top: -1px;
+  overflow: visible;
+}
+
+/* Hover open (desktop) */
+.dropdown:hover > .dropdown-menu,
+.dropdown-menu:hover {
+  display: flex;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Dropdown links style */
+.dropdown-menu a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  display: block;
+  transition: all 0.3s ease;
+  border-radius: 6px;
+}
+
+.dropdown-menu a:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateX(5px);
+}
+
+/* Submenu */
+.sub-dropdown {
+  position: relative;
+}
+
+.sub-menu {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background: rgba(15, 15, 15, 0.9);
+  border-radius: 10px;
+  padding: 10px 0;
+  list-style: none;
+  min-width: 200px;
+  display: none;
+  flex-direction: column;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  margin-left: -1px;
+}
+
+/* Stable hover submenu: when parent OR submenu hovered */
+.sub-dropdown:hover > .sub-menu,
+.sub-menu:hover {
+  display: flex;
+  opacity: 1;
+  visibility: visible;
+}
