@@ -1,0 +1,25 @@
+/* ==========================
+   FOOTER SECTION STYLING
+========================== */
+
+.footer {
+  background-color: #3b2e5a; /* dark purple tone */
+  color: #ffffff;
+  text-align: center;
+  padding: 18px 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  border-top: 2px solid #a287f4; /* subtle accent line */
+}
+
+/* Optional hover / link style (if you add links in footer later) */
+.footer a {
+  color: #a287f4;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: #ffffff;
+}

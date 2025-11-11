@@ -1,22 +1,25 @@
 /* ============ NAVBAR STYLESHEET ============ */
 .navbar-container {
   width: 100%;
-  background-color: #000;
+  background-color: rgba(0, 0, 0, 1);
   color: #fff;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
   font-family: "Poppins", sans-serif;
+  overflow: visible;
+  position: relative;
 }
 
-/* Navbar main area */
+/* ============ NAVBAR MAIN AREA ============ */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 18px 60px;
   position: relative;
+  transform: translateX(-30px);
 }
 
-/* ============ LEFT SIDE ============ */
+/* ============ LEFT SIDE (Logo + Title) ============ */
 .logo-title {
   display: flex;
   align-items: center;
@@ -26,6 +29,7 @@
 .logo {
   width: 45px;
   height: auto;
+  cursor: pointer;
 }
 
 .site-title {
@@ -37,15 +41,16 @@
 }
 
 .site-title:hover {
-  color: #a970ff; /* purple hover */
+  color: #fff;
 }
 
-/* ============ RIGHT SIDE ============ */
+/* ============ RIGHT SIDE (Menu Links) ============ */
 .nav-links {
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 35px;
+  font-weight: bold;
+  gap: 20px;
   margin: 0;
   padding: 0;
 }
@@ -54,16 +59,65 @@
   position: relative;
 }
 
-.nav-links a {
+/* ===== Menu links (main + dropdown + sub) ===== */
+.nav-links > li > a,
+.dropdown-menu a,
+.sub-menu a {
+  position: relative;
+  display: block; /* full width */
+  width: 100%; /* cover full block */
   text-decoration: none;
   color: #fff;
   font-weight: 500;
-  font-size: 16px;
-  transition: color 0.3s ease;
+  padding: 12px 20px;
+  border-radius: 12px;
+  transition: all 0.5s ease;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(0px);
+  box-sizing: border-box; /* include padding in width */
 }
 
-.nav-links a:hover {
-  color: #a970ff; /* purple hover */
+/* Hover: lift + glass */
+.nav-links > li > a:hover,
+.dropdown-menu a:hover,
+.sub-menu a:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(6px);
+  color: #fff;
+}
+
+/* Shimmer effect on hover */
+.nav-links > li > a:hover::after,
+.dropdown-menu a:hover::after,
+.sub-menu a:hover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%; /* thicker shimmer */
+  height: 150%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 40%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0.4) 60%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  pointer-events: none;
+  animation: shimmer 0.7s forwards;
+  border-radius: 12px;
+  filter: blur(3px);
+  z-index: 1;
+}
+
+/* Shimmer animation */
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
 }
 
 /* ============ DROPDOWN MENU ============ */
@@ -73,42 +127,52 @@
   top: 100%;
   left: 0;
   background-color: #111;
-  min-width: 190px;
+  min-width: 170px;
   border-radius: 8px;
   display: none;
   flex-direction: column;
   padding: 10px 0;
+  margin: 0;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
   z-index: 999;
+  list-style: none !important;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: all 0.25s ease;
+  overflow: visible;
 }
 
-.dropdown:hover > .dropdown-menu,
+/* Sub-menu adjustments */
+.sub-menu {
+  min-width: 170px !important;
+  left: 95%;
+  top: 0;
+  margin-left: 2px;
+  transform: translateX(5px);
+}
+
+/* Show dropdowns on hover */
+.dropdown:hover > .dropdown-menu {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .sub-dropdown:hover > .sub-menu {
   display: flex;
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.dropdown-menu li,
-.sub-menu li {
-  width: 100%;
+/* ===== Reset list bullets completely ===== */
+.navbar-container ul,
+.navbar-container li {
+  list-style: none !important;
+  margin: 0;
+  padding: 0;
 }
 
-.dropdown-menu a,
-.sub-menu a {
-  display: block;
-  padding: 10px 15px;
-  font-size: 14px;
-  color: #fff;
-  transition: background 0.3s ease;
-}
-
-.dropdown-menu a:hover,
-.sub-menu a:hover {
-  background-color: #a970ff;
-  color: #fff;
-}
-
-/* Sub-menu position (appears right side) */
-.sub-menu {
-  top: 0;
-  left: 100%;
+/* ===== Prevent Scrollbars ===== */
+html, body {
+  overflow-x: hidden !important;
 }
