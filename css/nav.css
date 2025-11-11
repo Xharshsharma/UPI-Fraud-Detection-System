@@ -107,55 +107,8 @@
   color: #fff;
 }
 
-/* Sub-dropdown arrow styling (optional) */
-.sub-dropdown > a::after {
-  content: "▶";
-  float: right;
-  font-size: 10px;
-  margin-top: 3px;
-}
-
 /* Sub-menu position (appears right side) */
 .sub-menu {
   top: 0;
   left: 100%;
-}
-
-/* ============ RESPONSIVE ============ */
-@media (max-width: 900px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 15px 30px;
-  }
-
-  .nav-links {
-    flex-direction: column;
-    width: 100%;
-    gap: 15px;
-    margin-top: 15px;
-    display: none;
-  }
-
-  .nav-links.show {
-    display: flex;
-  }
-
-  /* Simple toggle icon */
-  .menu-toggle {
-    display: block;
-    position: absolute;
-    right: 25px;
-    top: 22px;
-    font-size: 26px;
-    cursor: pointer;
-    color: #fff;
-  }
-}
-
-/* Hide toggle on desktop */
-@media (min-width: 901px) {
-  .menu-toggle {
-    display: none;
-  }
 }
