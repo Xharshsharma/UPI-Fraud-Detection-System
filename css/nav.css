@@ -1,110 +1,161 @@
-/* Navbar Container */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center; /* ✅ Keeps logo/title & menu perfectly aligned */
-    padding: 18px 60px; /* Slightly smaller for balance */
-    background-color: #000;
-    color: #fff;
-    font-family: 'Poppins', sans-serif;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    position: relative;
+/* ============ NAVBAR STYLESHEET ============ */
+.navbar-container {
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  font-family: "Poppins", sans-serif;
 }
 
-/* Logo + Title */
+/* Navbar main area */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 60px;
+  position: relative;
+}
+
+/* ============ LEFT SIDE ============ */
 .logo-title {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 .logo {
-    width: 55px;
-    height: 55px;
-    margin-left: 5px;
+  width: 45px;
+  height: auto;
 }
 
 .site-title {
-    color: #fff;
-    text-decoration: none;
-    font-size: 24px;
-    font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 20px;
+  transition: color 0.3s ease;
 }
 
-/* Nav Links */
+.site-title:hover {
+  color: #a970ff; /* purple hover */
+}
+
+/* ============ RIGHT SIDE ============ */
 .nav-links {
-    list-style: none;
-    display: flex;
-    align-items: center; /* ✅ Vertically aligns with logo/title */
-    justify-content: center; /* ✅ Keeps even spacing horizontally */
-    margin: 0;
-    padding: 0;
-    margin-right: 100px; /* adjust left-right balance */
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-links li {
-    position: relative;
-    margin-left: 35px;
+  position: relative;
 }
 
-.nav-links li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 17px;
-    display: flex;
-    align-items: center;
-    justify-content: center; /* ✅ ensures text stays centered */
-    height: 55px; /* ✅ same height as logo for perfect horizontal alignment */
-    transition: color 0.3s, transform 0.2s;
+.nav-links a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  font-size: 16px;
+  transition: color 0.3s ease;
 }
 
-.nav-links li a:hover {
-    color: #ffdd57;
-    transform: translateY(-1px);
+.nav-links a:hover {
+  color: #a970ff; /* purple hover */
 }
 
-/* Dropdown Menu */
+/* ============ DROPDOWN MENU ============ */
 .dropdown-menu,
 .sub-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #111;
-    min-width: 180px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    border-radius: 5px;
-    z-index: 1000;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #111;
+  min-width: 190px;
+  border-radius: 8px;
+  display: none;
+  flex-direction: column;
+  padding: 10px 0;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+  z-index: 999;
+}
+
+.dropdown:hover > .dropdown-menu,
+.sub-dropdown:hover > .sub-menu {
+  display: flex;
 }
 
 .dropdown-menu li,
 .sub-menu li {
-    position: relative;
+  width: 100%;
 }
 
-.dropdown-menu li a,
-.sub-menu li a {
-    padding: 10px 15px;
+.dropdown-menu a,
+.sub-menu a {
+  display: block;
+  padding: 10px 15px;
+  font-size: 14px;
+  color: #fff;
+  transition: background 0.3s ease;
+}
+
+.dropdown-menu a:hover,
+.sub-menu a:hover {
+  background-color: #a970ff;
+  color: #fff;
+}
+
+/* Sub-dropdown arrow styling (optional) */
+.sub-dropdown > a::after {
+  content: "▶";
+  float: right;
+  font-size: 10px;
+  margin-top: 3px;
+}
+
+/* Sub-menu position (appears right side) */
+.sub-menu {
+  top: 0;
+  left: 100%;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 900px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 30px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+    margin-top: 15px;
+    display: none;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  /* Simple toggle icon */
+  .menu-toggle {
+    display: block;
+    position: absolute;
+    right: 25px;
+    top: 22px;
+    font-size: 26px;
+    cursor: pointer;
     color: #fff;
+  }
 }
 
-.dropdown-menu li a:hover,
-.sub-menu li a:hover {
-    background-color: #222;
-    color: #ffdd57;
-}
-
-/* Show dropdown on hover */
-.nav-links li:hover > .dropdown-menu {
-    display: block;
-}
-
-/* Sub-menu positioning */
-.sub-dropdown:hover > .sub-menu {
-    display: block;
-    left: 100%;
-    top: 0;
+/* Hide toggle on desktop */
+@media (min-width: 901px) {
+  .menu-toggle {
+    display: none;
+  }
 }
